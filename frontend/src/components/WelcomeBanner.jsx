@@ -1,130 +1,154 @@
 import {
-  FaArrowUp,
   FaRobot,
   FaGraduationCap,
-  FaWallet,
-} from "react-icons/fa";
+  FaFire,
+  FaStar,
+  FaArrowTrendUp,
+  FaCircleCheck,
+} from "react-icons/fa6";
 
 function WelcomeBanner() {
   return (
-    <section className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-indigo-700 via-violet-700 to-slate-900 p-10 shadow-xl">
+    <section className="rounded-3xl bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border border-slate-700 p-8 shadow-xl">
 
-      {/* Background Glow */}
+      {/* Header */}
 
-      <div className="absolute -right-24 -top-20 h-72 w-72 rounded-full bg-indigo-500 opacity-20 blur-3xl"></div>
-
-      <div className="absolute left-20 bottom-0 h-40 w-40 rounded-full bg-cyan-400 opacity-10 blur-3xl"></div>
-
-      <div className="relative z-10 flex justify-between items-center">
-
-        {/* Left */}
+      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
 
         <div>
 
-          <p className="text-indigo-200 text-lg">
-            Welcome Back 👋
+          <p className="text-indigo-400 font-medium">
+            👋 Good Evening
           </p>
 
-          <h1 className="text-5xl font-extrabold text-white mt-3 leading-tight">
-            Ready to build
-            <br />
-            your financial future?
+          <h1 className="text-3xl lg:text-4xl font-bold text-white mt-2">
+            Welcome back, Harshita!
           </h1>
 
-          <p className="text-slate-200 mt-5 max-w-xl leading-7">
-            Continue learning, practice investing with paper trading,
-            analyze risks, and get instant guidance from your AI Financial Buddy.
+          <p className="text-slate-400 mt-3 max-w-2xl">
+            You're making excellent progress on your financial journey.
+            Complete today's lesson and continue growing your investment skills.
           </p>
-
-          <div className="flex gap-5 mt-8">
-
-            <button className="flex items-center gap-3 rounded-xl bg-white px-6 py-4 font-semibold text-indigo-700 hover:scale-105 transition">
-
-              <FaRobot />
-
-              Ask AI Buddy
-
-            </button>
-
-            <button className="flex items-center gap-3 rounded-xl border border-white px-6 py-4 text-white hover:bg-white hover:text-indigo-700 transition">
-
-              <FaGraduationCap />
-
-              Continue Learning
-
-            </button>
-
-          </div>
 
         </div>
 
-        {/* Right */}
+        <div className="bg-indigo-600 rounded-2xl px-6 py-4 text-center">
 
-        <div className="grid grid-cols-2 gap-5">
+          <p className="text-indigo-200 text-sm">
+            Current Level
+          </p>
 
-          <div className="rounded-2xl bg-white/10 backdrop-blur-md p-6 text-center">
+          <h2 className="text-3xl font-bold text-white">
+            3
+          </h2>
 
-            <FaWallet className="mx-auto text-3xl text-green-400" />
+        </div>
 
-            <p className="mt-4 text-slate-300">
-              Portfolio
-            </p>
+      </div>
 
-            <h2 className="text-3xl font-bold text-white mt-2">
-              ₹1,20,000
-            </h2>
+      {/* Quick Stats */}
+
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mt-8">
+
+        <div className="bg-slate-800 rounded-2xl p-5">
+
+          <FaCircleCheck className="text-cyan-400 text-3xl"/>
+
+          <p className="text-slate-400 mt-3">
+            Courses
+          </p>
+
+          <h2 className="text-2xl font-bold text-white">
+            12 Completed
+          </h2>
+
+        </div>
+
+        <div className="bg-slate-800 rounded-2xl p-5">
+
+          <FaFire className="text-orange-400 text-3xl"/>
+
+          <p className="text-slate-400 mt-3">
+            Learning Streak
+          </p>
+
+          <h2 className="text-2xl font-bold text-white">
+            15 Days
+          </h2>
+
+        </div>
+
+        <div className="bg-slate-800 rounded-2xl p-5">
+
+          <FaStar className="text-yellow-400 text-3xl"/>
+
+          <p className="text-slate-400 mt-3">
+            XP Earned
+          </p>
+
+          <h2 className="text-2xl font-bold text-white">
+            1250 XP
+          </h2>
+
+        </div>
+
+        <div className="bg-slate-800 rounded-2xl p-5">
+
+          <FaArrowTrendUp className="text-green-400 text-3xl"/>
+
+          <p className="text-slate-400 mt-3">
+            Quiz Accuracy
+          </p>
+
+          <h2 className="text-2xl font-bold text-green-400">
+            87%
+          </h2>
+
+        </div>
+
+      </div>
+
+      {/* AI Suggestion */}
+
+      <div className="mt-8 bg-indigo-600/15 border border-indigo-500 rounded-2xl p-6 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
+
+        <div>
+
+          <div className="flex items-center gap-3">
+
+            <FaRobot className="text-indigo-400 text-2xl"/>
+
+            <h3 className="text-white text-xl font-bold">
+              AI Buddy Recommendation
+            </h3>
 
           </div>
 
-          <div className="rounded-2xl bg-white/10 backdrop-blur-md p-6 text-center">
+          <p className="text-slate-300 mt-3 max-w-3xl">
+            Complete <span className="text-indigo-400 font-semibold">"Stock Market Basics"</span>
+            today to unlock Paper Trading and earn
+            <span className="text-yellow-400 font-semibold"> +100 XP</span>.
+          </p>
 
-            <FaArrowUp className="mx-auto text-3xl text-emerald-400" />
+        </div>
 
-            <p className="mt-4 text-slate-300">
-              Growth
-            </p>
+        <div className="flex gap-4">
 
-            <h2 className="text-3xl font-bold text-green-400 mt-2">
-              +18.7%
-            </h2>
+          <button className="bg-indigo-600 hover:bg-indigo-500 transition px-5 py-3 rounded-xl text-white font-semibold flex items-center gap-2">
 
-          </div>
+            <FaGraduationCap />
 
-          <div className="rounded-2xl bg-white/10 backdrop-blur-md p-6 text-center">
+            Continue
 
-            <p className="text-slate-300">
-              Learning
-            </p>
+          </button>
 
-            <h2 className="text-3xl font-bold text-white mt-2">
-              72%
-            </h2>
+          <button className="bg-slate-800 hover:bg-slate-700 transition px-5 py-3 rounded-xl text-white font-semibold flex items-center gap-2">
 
-            <div className="mt-4 h-2 rounded-full bg-slate-700">
+            <FaRobot />
 
-              <div className="h-2 w-[72%] rounded-full bg-green-400"></div>
+            Ask AI
 
-            </div>
-
-          </div>
-
-          <div className="rounded-2xl bg-white/10 backdrop-blur-md p-6 text-center">
-
-            <p className="text-slate-300">
-              Risk Score
-            </p>
-
-            <h2 className="text-3xl font-bold text-yellow-300 mt-2">
-              Medium
-            </h2>
-
-            <div className="mt-4 h-2 rounded-full bg-slate-700">
-
-              <div className="h-2 w-[55%] rounded-full bg-yellow-400"></div>
-
-            </div>
-
-          </div>
+          </button>
 
         </div>
 
