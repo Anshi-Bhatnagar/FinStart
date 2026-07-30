@@ -8,5 +8,11 @@ class PortfolioResponse(BaseModel):
     quantity: int
     average_buy_price: float
 
+    current_price: float
+    investment: float
+    current_value: float
+    profit_loss: float
+    profit_loss_percent: float
+
     class Config:
         from_attributes = True
