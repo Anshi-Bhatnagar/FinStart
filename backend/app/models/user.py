@@ -1,15 +1,39 @@
-from sqlalchemy import Column, Integer, String,Boolean,DateTime
+from sqlalchemy import Column, Integer, String, Boolean, DateTime
 from sqlalchemy.sql import func
-from app.database import Base
 from sqlalchemy.orm import relationship
+
+from app.database import Base
+
 
 class User(Base):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True)
-    profile = relationship("Profile", back_populates="user", uselist=False)
-    full_name = Column(String,nullable=False)
-    email = Column(String, unique=True, index=True ,nullable=False)
-    hashed_password = Column(String,nullable=False)
+    full_name = Column(String, nullable=False)
+    email = Column(String, unique=True, index=True, nullable=False)
+    hashed_password = Column(String, nullable=False)
     is_active = Column(Boolean, default=True)
     created_at = Column(DateTime, server_default=func.now())
+
+    profile = relationship(
+        "Profile",
+        back_populates="user",
+        uselist=False
+    )
+
+    goals = relationship(
+        "Goal",
+        back_populates="user"
+    )
+
+    trades = relationship(
+        "Trade",
+        back_populates="user"
+    )
+
+    wallet = relationship(
+        "Wallet",
+        back_populates="user",
+        uselist=False
+    )
+    portfolio = relationship("Portfolio", back_populates="user")
