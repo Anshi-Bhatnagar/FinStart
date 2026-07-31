@@ -11,7 +11,7 @@ class Trade(Base):
     stock_symbol = Column(String, nullable=False)
     company_name = Column(String, nullable=False)
     trade_type = Column(String, nullable=False)  # 'buy' or 'sell'
-    quantity = Column(Float, nullable=False)
+    quantity = Column(Integer, nullable=False)
     price = Column(Float, nullable=False)
     total_amount = Column(Float, nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow)
