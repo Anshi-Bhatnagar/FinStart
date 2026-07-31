@@ -1,10 +1,11 @@
+import Layout from "../components/layout/Layout";
 import AIBuddy from "../components/AIBuddy/AIBuddy";
 
 const AIBuddyPage = () => {
   return (
-    <div className="bg-[#020617] min-h-screen">
+    <Layout>
       <AIBuddy />
-    </div>
+    </Layout>
   );
 };
 
