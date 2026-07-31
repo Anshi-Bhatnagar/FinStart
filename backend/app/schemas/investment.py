@@ -33,10 +33,9 @@ class InvestmentResponse(BaseModel):
 class BuySellRequest(BaseModel):
     stock_symbol: str
     company_name: str
+    sector: str | None = None
+    exchange: str | None = None
     quantity: int
-    price: float
-    sector: Optional[str] = None
-    exchange: Optional[str] = None
 
 
 # ---------- Holding ----------
@@ -47,12 +46,21 @@ class HoldingResponse(BaseModel):
     company_name: str
     sector: Optional[str]
     exchange: Optional[str]
+
     quantity: int
+
     average_buy_price: float
+
+    current_price: float
+
+    market_value: float
+
+    profit_loss: float
+
+    profit_loss_percentage: float
 
     class Config:
         from_attributes = True
-
 
 # ---------- Transaction ----------
 

@@ -14,7 +14,9 @@ from app.models.portfolio import Portfolio
 from app.models.investment import Investment
 from app.models.investment_holding import InvestmentHolding
 from app.models.investment_transaction import InvestmentTransaction
-
+from app.models.learn_category import LearnCategory
+from app.models.lesson import Lesson
+from app.models.lesson_progress import LessonProgress
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config

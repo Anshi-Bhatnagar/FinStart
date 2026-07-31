@@ -7,3 +7,7 @@ from .portfolio import Portfolio
 from .investment import Investment
 from .investment_holding import InvestmentHolding
 from .investment_transaction import InvestmentTransaction
+from .learn_category import LearnCategory
+from .lesson import Lesson
+from .lesson_progress import LessonProgress
+from .chat_history import ChatHistory

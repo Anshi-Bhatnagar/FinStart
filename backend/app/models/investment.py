@@ -43,8 +43,3 @@ class Investment(Base):
         back_populates="investment",
         cascade="all, delete-orphan"
     )
-    holdings = relationship(
-    "InvestmentHolding",
-    back_populates="investment",
-    cascade="all, delete-orphan"
-    )

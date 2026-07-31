@@ -4,7 +4,7 @@
 # import os
 # import time
 # import json
-# from app.ai.registery_tool import TOOLS
+# from app.ai.registry_tool import TOOLS
 # from app.ai.tools.market_data import get_stock_price
 # from app.ai.tools.market_news import get_company_news,get_news
 # from app.ai.prompts import SYSTEM_PROMPT
@@ -164,7 +164,7 @@ import os
 import json
 import time
 
-from app.ai.registery_tool import TOOLS
+from app.ai.registry_tool import TOOLS
 from app.ai.tools.market_data import get_stock_price
 from app.ai.tools.market_news import get_company_news, get_news
 from app.ai.prompts import SYSTEM_PROMPT

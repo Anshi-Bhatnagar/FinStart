@@ -1,11 +1,11 @@
 from fastapi import FastAPI, Depends
 from app.models.user import User
 from app.models.profile import Profile
-from app.routers import auth,wallet,portfolio,ai,dashboard,investment
+from app.routers import auth,wallet,portfolio,ai,dashboard,investment,learn,quiz,dashboard_analytics,progress,achievement
 from app.utils.dependencies import get_current_user
 from app.routers.goal import router as goal_router
 from app.routers.trade import router as trade_router
-
+from app.routers import streak,dashboard_analytics
 
 
 app=FastAPI()
@@ -16,7 +16,20 @@ app.include_router(trade_router)
 app.include_router(portfolio.router)
 app.include_router(ai.router)
 app.include_router(investment.router)
+app.include_router(learn.router)
 app.include_router(dashboard.router)
+app.include_router(quiz.router)
+app.include_router(
+    dashboard_analytics.router
+)
+app.include_router(progress.router)
+app.include_router(
+    achievement.router
+)
+app.include_router(streak.router)
+app.include_router(
+    dashboard_analytics.router
+)
 
 @app.get("/")
 def root():
