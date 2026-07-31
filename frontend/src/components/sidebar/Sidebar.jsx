@@ -6,14 +6,13 @@ import {
   FaChartLine,
   FaCoins,
   FaShieldAlt,
-  FaTrophy,
 } from "react-icons/fa";
 
 function Sidebar() {
   const menuItems = [
     {
       name: "Dashboard",
-      path: "/",
+      path: "/dashboard",
       icon: <FaHome />,
     },
     {
@@ -27,8 +26,8 @@ function Sidebar() {
       icon: <FaBookOpen />,
     },
     {
-      name: "Market",
-      path: "/market",
+      name: "Investments",
+      path: "/investments",
       icon: <FaChartLine />,
     },
     {
@@ -40,11 +39,6 @@ function Sidebar() {
       name: "Risk Assessment",
       path: "/risk-assessment",
       icon: <FaShieldAlt />,
-    },
-    {
-      name: "Achievements",
-      path: "/achievements",
-      icon: <FaTrophy />,
     },
   ];
 

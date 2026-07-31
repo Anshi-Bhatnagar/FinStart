@@ -5,7 +5,7 @@ import Dashboard from "./pages/Dashboard";
 import Investment from "./pages/Investment";
 import RiskAssessment from "./pages/RiskAssessment";
 import Learn from "./pages/Learn";
-
+import AIBuddyPage from "./pages/AIBuddyPage";
 function App() {
   return (
     <BrowserRouter>
@@ -15,6 +15,7 @@ function App() {
         <Route path="/investments" element={<Investment />} />
         <Route path="/risk-assessment" element={<RiskAssessment />} />
         <Route path="/learn" element={<Learn />} />
+        <Route path="/ai-buddy" element={<AIBuddyPage />} />
       </Routes>
     </BrowserRouter>
   );
