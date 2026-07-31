@@ -4,3 +4,6 @@ from .profile import Profile
 from .trade import Trade
 from .wallet import Wallet
 from .portfolio import Portfolio
+from .investment import Investment
+from .investment_holding import InvestmentHolding
+from .investment_transaction import InvestmentTransaction

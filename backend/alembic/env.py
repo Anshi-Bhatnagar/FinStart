@@ -9,6 +9,11 @@ from app.models.user import User
 from app.models.profile import Profile
 from app.models.goal import Goal
 from app.models.trade import Trade
+from app.models.wallet import Wallet
+from app.models.portfolio import Portfolio
+from app.models.investment import Investment
+from app.models.investment_holding import InvestmentHolding
+from app.models.investment_transaction import InvestmentTransaction
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -24,9 +29,7 @@ if config.config_file_name is not None:
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
 target_metadata = Base.metadata
-print("DEBUG target_metadata:", target_metadata)
-print("DEBUG tables:", target_metadata.tables.keys())
-print("DEBUG is None:", target_metadata is None)
+
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")

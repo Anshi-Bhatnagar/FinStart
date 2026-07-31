@@ -37,3 +37,10 @@ class User(Base):
         uselist=False
     )
     portfolio = relationship("Portfolio", back_populates="user")
+
+    investments = relationship(
+    "Investment",
+    back_populates="user",
+    cascade="all, delete-orphan"
+    )
+    
