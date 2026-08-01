@@ -1,14 +1,18 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
 
 function Signup() {
   const navigate = useNavigate();
 
   const [user, setUser] = useState({
-    fullname: "",
+    full_name: "",
     email: "",
     password: "",
   });
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setUser({
@@ -17,13 +21,32 @@ function Signup() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(user);
+    setLoading(true);
+    setError("");
 
-    // Later connect backend here
-    navigate("/login");
+    try {
+      await axios.post(
+        "http://127.0.0.1:8000/auth/register",
+        user
+      );
+
+      alert("Registration Successful! Please Login.");
+      navigate("/login");
+
+    } catch (err) {
+
+      if (err.response) {
+        setError(err.response.data.detail);
+      } else {
+        setError("Server not reachable");
+      }
+
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -48,8 +71,8 @@ function Signup() {
 
             <input
               type="text"
-              name="fullname"
-              value={user.fullname}
+              name="full_name"
+              value={user.full_name}
               onChange={handleChange}
               placeholder="Enter your name"
               className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white outline-none focus:border-violet-500"
@@ -89,11 +112,18 @@ function Signup() {
             />
           </div>
 
+          {error && (
+            <p className="text-red-500 text-center">
+              {error}
+            </p>
+          )}
+
           <button
             type="submit"
-            className="w-full bg-violet-600 hover:bg-violet-500 transition py-3 rounded-xl text-white font-semibold"
+            disabled={loading}
+            className="w-full bg-violet-600 hover:bg-violet-500 transition py-3 rounded-xl text-white font-semibold disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            Sign Up
+             {loading ? "Creating Account..." : "Sign Up"}
           </button>
 
         </form>

@@ -6,9 +6,17 @@ from app.utils.dependencies import get_current_user
 from app.routers.goal import router as goal_router
 from app.routers.trade import router as trade_router
 from app.routers import streak,dashboard_analytics
+from fastapi.middleware.cors import CORSMiddleware
 
 
 app=FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 app.include_router(auth.router)
 app.include_router(wallet.router)   
 app.include_router(goal_router)
@@ -30,6 +38,7 @@ app.include_router(streak.router)
 app.include_router(
     dashboard_analytics.router
 )
+
 
 @app.get("/")
 def root():

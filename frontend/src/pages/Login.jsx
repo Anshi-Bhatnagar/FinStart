@@ -17,45 +17,54 @@ export default function Login() {
 
     const handleLogin = async (e) => {
 
-        e.preventDefault();
+    e.preventDefault();
 
-        setError("");
+    setError("");
 
-        try {
+    try {
 
-            setLoading(true);
+        setLoading(true);
 
-            const res = await axios.post(
-                "http://localhost:8000/auth/login",
-                {
-                    email,
-                    password
-                }
-            );
+        const formData = new URLSearchParams();
 
-            localStorage.setItem("token", res.data.access_token);
+        formData.append("username", email);
+        formData.append("password", password);
 
-            navigate("/dashboard");
-
-        } catch (err) {
-
-            if (err.response) {
-
-                setError(err.response.data.detail);
-
-            } else {
-
-                setError("Server not reachable");
-
+        const res = await axios.post(
+            "http://127.0.0.1:8000/auth/login",
+            formData,
+            {
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
             }
+        );
 
-        } finally {
+        localStorage.setItem("token", res.data.access_token);
 
-            setLoading(false);
+        alert("Login Successful!");
+
+        navigate("/dashboard");
+
+    } catch (err) {
+
+        if (err.response) {
+
+            setError(err.response.data.detail);
+
+        } else {
+
+            setError("Server not reachable");
 
         }
 
-    };
+    } finally {
+
+        setLoading(false);
+
+    }
+
+};
 
     return (
 
