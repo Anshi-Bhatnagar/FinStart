@@ -1,9 +1,8 @@
 import Layout from "../components/layout/Layout";
-
 import WelcomeBanner from "../components/welcomebanner/WelcomeBanner";
-import AIBuddy from "../components/aibuddy/AIBuddy";
-import PaperTrading from "../components/papertrading/PaperTrading";
 import ProgressCard from "../components/progresscard/ProgressCard";
+import AIBuddy from "../components/aibuddy/AIBuddy";
+import PaperTradingCard from "../components/paperTrading/PaperTradingCard";
 
 function Dashboard() {
   return (
@@ -16,7 +15,10 @@ function Dashboard() {
         <AIBuddy />
       </div>
 
-      <PaperTrading />
+      {/* Add it HERE */}
+      <div className="mt-8">
+        <PaperTradingCard />
+      </div>
 
     </Layout>
   );
