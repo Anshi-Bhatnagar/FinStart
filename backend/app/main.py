@@ -5,7 +5,7 @@ from app.routers import auth,wallet,portfolio,ai,dashboard,investment,learn,quiz
 from app.utils.dependencies import get_current_user
 from app.routers.goal import router as goal_router
 from app.routers.trade import router as trade_router
-from app.routers import streak,dashboard_analytics
+from app.routers import streak,dashboard_analytics,dashboard_summary
 from fastapi.middleware.cors import CORSMiddleware
 
 
@@ -38,7 +38,9 @@ app.include_router(streak.router)
 app.include_router(
     dashboard_analytics.router
 )
-
+app.include_router(
+    dashboard_summary.router
+)
 
 @app.get("/")
 def root():

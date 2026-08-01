@@ -14,6 +14,9 @@ import api from "../services/axiosInstance";
 function WelcomeBanner() {
   const [user, setUser] = useState(null);
   const [progress, setProgress] = useState(null);
+  const [streak, setStreak] = useState(null);
+  const [summary, setSummary] = useState(null);
+  
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -32,10 +35,28 @@ function WelcomeBanner() {
       console.error("Error fetching progress:", err);
     }
   };
-
+  const fetchStreak = async () => {
+  try {
+    const res = await api.get("/streak/");
+    setStreak(res.data);
+  } catch (err) {
+    console.error("Error fetching streak:", err);
+  }
+};
+const fetchSummary = async () => {
+  try {
+    const res = await api.get("/dashboard-summary/");
+    setSummary(res.data);
+  } catch (err) {
+    console.error("Error fetching dashboard summary:", err);
+  }
+};  
 
   fetchUser();
   fetchProgress();
+  fetchStreak();
+  fetchSummary();
+
   }, []);
 
   return (
@@ -109,10 +130,10 @@ function WelcomeBanner() {
 
       <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-4 gap-4 lg:gap-6 mt-12">
 
-        <Stat icon={<FaCheckCircle className="text-cyan-400 text-3xl"/>} title="Lessons Completed" value="12"/>
-        <Stat icon={<FaFire className="text-orange-400 text-3xl"/>} title="Learning Streak" value="15 Days"/>
-        <Stat icon={<FaChartLine className="text-green-400 text-3xl"/>} title="Paper Trades" value="24"/>
-        <Stat icon={<FaBullseye className="text-pink-400 text-3xl"/>} title="Daily Goal" value="2 / 3"/>
+        <Stat icon={<FaCheckCircle className="text-cyan-400 text-3xl"/>} title="Lessons Completed" value={progress ? progress.completed_lessons : "Loading..."}/>
+        <Stat icon={<FaFire className="text-orange-400 text-3xl"/>} title="Learning Streak" value={streak ? `${streak.current_streak} Days` : "Loading..."}/>
+        <Stat icon={<FaChartLine className="text-green-400 text-3xl"/>} title="Paper Trades" value={summary ? summary.paper_trades : "Loading..."}/>
+        <Stat icon={<FaBullseye className="text-pink-400 text-3xl"/>} title="Daily Goal" value="2/3"/>
 
       </div>
 

@@ -1,3 +1,4 @@
+
 from sqlalchemy.orm import Session
 
 from app.models.lesson_progress import LessonProgress
@@ -49,38 +50,62 @@ def get_achievements(
     ) is not None
 
     achievements = [
-        {
-            "title": "First Lesson",
-            "description": "Complete your first lesson.",
-            "unlocked": lessons_completed >= 1,
-        },
-        {
-            "title": "Learning Starter",
-            "description": "Complete 5 lessons.",
-            "unlocked": lessons_completed >= 5,
-        },
-        {
-            "title": "Learning Expert",
-            "description": "Complete 10 lessons.",
-            "unlocked": lessons_completed >= 10,
-        },
-        {
-            "title": "Quiz Master",
-            "description": "Score 100% in a quiz.",
-            "unlocked": quiz_master,
-        },
-        {
-            "title": "First Investment",
-            "description": "Buy your first stock.",
-            "unlocked": trades >= 1,
-        },
-        {
-            "title": "Active Investor",
-            "description": "Complete 5 trades.",
-            "unlocked": trades >= 5,
-        },
-    ]
+    {
+        "title": "First Lesson",
+        "description": "Complete your first lesson.",
+        "unlocked": lessons_completed >= 1,
+    },
+    {
+        "title": "Learning Starter",
+        "description": "Complete 5 lessons.",
+        "unlocked": lessons_completed >= 5,
+    },
+    {
+        "title": "Learning Expert",
+        "description": "Complete 10 lessons.",
+        "unlocked": lessons_completed >= 10,
+    },
+    {
+        "title": "Quiz Master",
+        "description": "Score 100% in a quiz.",
+        "unlocked": quiz_master,
+    },
+    {
+        "title": "First Investment",
+        "description": "Buy your first stock.",
+        "unlocked": trades >= 1,
+    },
+    {
+        "title": "Active Investor",
+        "description": "Complete 5 trades.",
+        "unlocked": trades >= 5,
+    },
+]
+
+    # ===========================================
+    # Dashboard Statistics
+    # ===========================================
+
+    unlocked = sum(
+        achievement["unlocked"]
+        for achievement in achievements
+    )
+
+    total = len(achievements)
+
+    badges = unlocked
+
+    xp = (
+        lessons_completed * 50
+        + trades * 25
+        + unlocked * 100
+    )
+
 
     return {
-        "achievements": achievements
+        "xp": xp,
+        "badges": badges,
+        "unlocked": unlocked,
+        "total": total,
+        "achievements": achievements,
     }

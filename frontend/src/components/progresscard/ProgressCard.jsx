@@ -5,8 +5,48 @@ import {
   FaBullseye,
   FaArrowTrendUp,
 } from "react-icons/fa6";
+import { useEffect, useState } from "react";
+import api from "../../services/axiosInstance";
 
 function ProgressCard() {
+  const [achievementData, setAchievementData] = useState(null);
+  const [streak, setStreak] = useState(null);
+  const [progress, setProgress] = useState(null);
+  
+
+  useEffect(() => {
+  const fetchAchievements = async () => {
+    try {
+      const res = await api.get("/achievements/");
+      setAchievementData(res.data);
+    } catch (err) {
+      console.error("Error fetching achievements:", err);
+    }
+  };
+  const fetchStreak = async () => {
+  try {
+    const res = await api.get("/streak/");
+    setStreak(res.data);
+  } catch (err) {
+    console.error("Error fetching streak:", err);
+  }
+};
+const fetchProgress = async () => {
+  try {
+    const res = await api.get("/progress/");
+    setProgress(res.data);
+  } catch (err) {
+    console.error("Error fetching progress:", err);
+  }
+};
+
+
+  fetchAchievements();
+  fetchStreak();
+  fetchProgress();  
+  
+}, []);
+
   return (
     <section className="bg-slate-900 rounded-3xl border border-slate-800 p-8 shadow-xl">
 
@@ -43,14 +83,19 @@ function ProgressCard() {
           </span>
 
           <span className="text-indigo-400 font-bold">
-            72%
+            {progress ? `${progress.completion_percentage}%` : "Loading..."}
           </span>
 
         </div>
 
         <div className="h-4 bg-slate-800 rounded-full overflow-hidden">
 
-          <div className="h-full w-[72%] bg-gradient-to-r from-indigo-500 to-cyan-400 rounded-full"></div>
+          <div
+  className="h-full bg-gradient-to-r from-indigo-500 to-cyan-400 rounded-full"
+  style={{
+    width: `${progress?.completion_percentage ?? 0}%`,
+  }}
+></div>
 
         </div>
 
@@ -121,7 +166,7 @@ function ProgressCard() {
           <FaFire className="mx-auto text-3xl text-orange-400"/>
 
           <h2 className="text-white text-3xl font-bold mt-3">
-            15
+              {streak?.current_streak ?? 0}
           </h2>
 
           <p className="text-slate-400 mt-2">
@@ -135,7 +180,7 @@ function ProgressCard() {
           <FaStar className="mx-auto text-3xl text-yellow-400"/>
 
           <h2 className="text-white text-3xl font-bold mt-3">
-            1250
+            {achievementData?.xp ?? 0}
           </h2>
 
           <p className="text-slate-400 mt-2">
@@ -149,7 +194,7 @@ function ProgressCard() {
           <FaTrophy className="mx-auto text-3xl text-green-400"/>
 
           <h2 className="text-white text-3xl font-bold mt-3">
-            18
+            {achievementData?.badges ?? 0}
           </h2>
 
           <p className="text-slate-400 mt-2">

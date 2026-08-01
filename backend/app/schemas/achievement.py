@@ -8,4 +8,8 @@ class Achievement(BaseModel):
 
 
 class AchievementResponse(BaseModel):
+    xp: int
+    badges: int
+    unlocked: int
+    total: int
     achievements: list[Achievement]
