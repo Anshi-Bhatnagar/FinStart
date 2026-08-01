@@ -1,5 +1,5 @@
 import Layout from "../components/layout/Layout";
-import WelcomeBanner from "../components/welcomebanner/WelcomeBanner";
+import WelcomeBanner from "../components/welcomebanner";
 import ProgressCard from "../components/progresscard/ProgressCard";
 import AIBuddy from "../components/aibuddy/AIBuddy";
 import PaperTradingCard from "../components/paperTrading/PaperTradingCard";

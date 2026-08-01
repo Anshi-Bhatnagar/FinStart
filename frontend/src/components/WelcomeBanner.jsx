@@ -8,8 +8,36 @@ import {
   FaBullseye,
   FaCheckCircle,
 } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import api from "../services/axiosInstance";
 
 function WelcomeBanner() {
+  const [user, setUser] = useState(null);
+  const [progress, setProgress] = useState(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await api.get("/profile");
+        setUser(res.data);
+      } catch (err) {
+        console.error("Error fetching user data:", err);
+      }
+    };
+     const fetchProgress = async () => {
+    try {
+      const res = await api.get("/progress/");
+      setProgress(res.data);
+    } catch (err) {
+      console.error("Error fetching progress:", err);
+    }
+  };
+
+
+  fetchUser();
+  fetchProgress();
+  }, []);
+
   return (
     <section className="rounded-3xl bg-gradient-to-r from-indigo-900 via-slate-900 to-slate-950 border border-slate-700 p-5 sm:p-6 md:p-8 lg:p-10 shadow-2xl overflow-hidden">
 
@@ -21,7 +49,7 @@ function WelcomeBanner() {
           </p>
 
           <h1 className="mt-3 text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight max-w-3xl">
-            Welcome Back, Harshita!
+            Welcome Back, {user ?.full_name || "Loading..."}!
           </h1>
 
           <p className="mt-6 text-slate-300 text-base sm:text-lg leading-8 max-w-2xl">
@@ -32,15 +60,19 @@ function WelcomeBanner() {
           <div className="mt-8 max-w-xl">
             <div className="flex justify-between text-sm text-slate-300 mb-2">
               <span>Learning Progress</span>
-              <span>62%</span>
+              <span>
+                  {progress?.completion_percentage ?? 0}%
+              </span>
             </div>
 
             <div className="w-full h-3 rounded-full bg-slate-700 overflow-hidden">
-              <div className="h-full w-[62%] rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"></div>
+              <div className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"style={{width: `${progress?.completion_percentage ?? 0}%`,}}></div>
             </div>
 
             <p className="text-slate-400 mt-3">
-              12 / 20 Lessons Completed
+              {progress
+    ? `${progress.completed_lessons} / ${progress.total_lessons} Lessons Completed`
+    : "Loading..."}
             </p>
           </div>
 
